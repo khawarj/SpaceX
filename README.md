@@ -18,6 +18,7 @@ On click of Rocket icon you would be able tosee the rocket payload and core deta
 - Scroll to top functionality
 - Using QueryParams for Search filters to make it url friendly
 - Having a more clean design. Currently its more focussed towards functionality.
+- - tailwind transition is currently not working. Need to work on that to fix animations
 
 
 Note: Before running the project make sure you add .env file with below config
