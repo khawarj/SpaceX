@@ -1,3 +1,5 @@
+import { Maybe } from "graphql/jsutils/Maybe";
+import { LaunchRocket, LaunchRocketFirstStageCore, Payload } from "../../gql/graphql";
 
 const renderSVG = () => (
   <span className="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
@@ -17,18 +19,19 @@ const renderSVG = () => (
   </span>
 );
 
-const renderFirstStage = (cores: any) => {
+
+const renderFirstStage = (cores: Maybe<Maybe<LaunchRocketFirstStageCore>[]>) => {
   if (!cores) {
     return null;
   }
   return (
     <ol className="relative border-l border-gray-200 dark:border-gray-700">
-      {cores.map((core: any, idx: number) => {
+      {cores.map((core, idx: number) => {
         return (
           <li key={idx} className="mb-10 ml-6">
             {renderSVG()}
             <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-              Flight - {core.flight}
+              Flight - {core?.flight}
               <span className="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
                 Status: {core?.core?.status}
               </span>
@@ -43,13 +46,13 @@ const renderFirstStage = (cores: any) => {
   );
 };
 
-const renderSecondStage = (cores: any) => {
+const renderSecondStage = (cores: Maybe<Array<Maybe<Payload>>>) => {
   if (!cores) {
     return null;
   }
   return (
     <ol className="relative border-l border-gray-200 dark:border-gray-700">
-      {cores.map((core: any, idx: number) => {
+      {cores.map((core, idx: number) => {
         return (
           <li key={idx} className="mb-10 ml-6">
             {renderSVG()}
@@ -70,7 +73,7 @@ const renderSecondStage = (cores: any) => {
 };
 
 interface ITimeLine {
-  timeLineData: any
+  timeLineData: Maybe<LaunchRocket>
 }
 
 const TimeLine = ({timeLineData}: ITimeLine) => {

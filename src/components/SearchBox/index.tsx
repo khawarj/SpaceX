@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useRef } from "react";
+import React, { HTMLAttributes } from "react";
 
 interface ISearchBoxProps extends HTMLAttributes<HTMLInputElement>{
   placeholder: string,
@@ -38,7 +38,6 @@ const SearchBox = ({ placeholder, searchRef, onClear, ...restProps}: ISearchBoxP
           ref={searchRef}
           onChange={() => {
             if(searchRef?.current?.value === ""){
-              console.log("clearing")
               onClear()
             }
               

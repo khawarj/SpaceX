@@ -1,8 +1,9 @@
 import React, { useMemo } from "react";
 import { flatten } from "flatten-anything";
+import { Launch } from "../../gql/graphql";
 
 interface IMissionComparision {
-  missions: any[];
+  missions: Launch[];
 }
 
 type record = { [key: string]: any[] };
@@ -16,10 +17,8 @@ const sanatizeValue = (val: any) => {
     case "string":
       //TODO: check for date with moment and format
       return val;
-      break;
     case "boolean":
       return val ? "True" : "False";
-      break;
     default:
       return val;
   }

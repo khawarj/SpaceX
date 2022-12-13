@@ -39,14 +39,14 @@ const LaunchPage = () => {
         //addtion
         setSelected((_prevSelected) => {
           _prevSelected[idx] = true
-          return [... _prevSelected]
+          return [..._prevSelected]
         });
         setMissions((_prev: any[]) => [..._prev, mission]);
       } else {
         //removal
         setSelected((_prevSelected) => {
           _prevSelected[idx] = false
-          return [... _prevSelected]
+          return [..._prevSelected]
         });
         setMissions((_prev: any[]) => [
           ..._prev.filter((i) => i.mission_name !== mission.mission_name),
@@ -75,7 +75,6 @@ const LaunchPage = () => {
     // setOffSet(0);
     setSelected(getInitState());
   };
-
   if (isLoading) {
     return (
       <div className="flex flex-col w-full">
@@ -86,7 +85,6 @@ const LaunchPage = () => {
           isLoading={isLoading}
           onResetHandler={clearAll}
           onMissionClear={() => {
-            console.log("clearing")
             clearAll()
           }}
           onRocketClear={() => {
@@ -120,7 +118,7 @@ const LaunchPage = () => {
         />
         <div className="flex w-full min-h-full flex-col bg-white border-solid border-x-2 border-slate-100">
           <ListHeader />
-          {data?.launchesPast.map((x: any, idx: number) => (
+          {data?.launchesPast?.map((x, idx: number) => (
             <LaunchSection
               canAdd={missions.length < 2}
               onSelect={(mission, flag) =>
@@ -149,7 +147,7 @@ const LaunchPage = () => {
               setOffSet((prev) => prev + 1);
             }}
             isLoading={isLoading}
-            disabled={data.launchesPast.length < 10}
+            disabled={!!(data?.launchesPast) && data?.launchesPast?.length < 10}
           >
             Next
           </ButtonWrapper>
