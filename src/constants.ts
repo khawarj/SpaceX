@@ -1,0 +1,1 @@
+export const PAST_LAUNCHES_QUERY_KEY = "past-launches"
